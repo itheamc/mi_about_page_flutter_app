@@ -54,6 +54,6 @@ class APersistentHeader extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    throw false;
+    return false;
   }
 }
