@@ -465,7 +465,7 @@ class _AboutScreenState extends State<AboutScreen> {
 
           const SliverToBoxAdapter(
             child: SizedBox(
-              height: 150.0,
+              height: 100.0,
             ),
           )
 
