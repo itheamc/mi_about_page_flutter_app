@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: "Mi About Page",
       home: AboutScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

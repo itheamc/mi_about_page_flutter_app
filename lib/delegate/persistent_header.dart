@@ -24,8 +24,10 @@ class APersistentHeader extends SliverPersistentHeaderDelegate {
           Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
-              padding:
+              padding: EdgeInsets.lerp(
+                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 30.0),
                   const EdgeInsets.symmetric(vertical: 16.0, horizontal: 60.0),
+                  progress) ?? const EdgeInsets.symmetric(vertical: 16.0, horizontal: 60.0),
               child: Text(
                 "About phone",
                 style: TextStyle.lerp(
@@ -37,7 +39,7 @@ class APersistentHeader extends SliverPersistentHeaderDelegate {
                         fontSize: 18.0,
                         fontWeight: FontWeight.normal,
                         color: Colors.white),
-                    shrinkOffset / maxExtent),
+                    progress),
               ),
             ),
           )
