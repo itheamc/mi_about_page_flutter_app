@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mi_about_page/delegate/persistent_header.dart';
 import 'package:mi_about_page/utils/clippers.dart';
 
 class AboutScreen extends StatefulWidget {
@@ -20,31 +21,15 @@ class _AboutScreenState extends State<AboutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _theme = Theme.of(context);
 
     return Scaffold(
       backgroundColor: Colors.black,
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [
-          SliverAppBar(
+          SliverPersistentHeader(
             pinned: true,
-            backgroundColor: Colors.transparent,
-            leading: IconButton(
-                onPressed: () {}, icon: const Icon(Icons.arrow_back)),
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 15.0, horizontal: 25.0),
-              child: Text(
-                "About phone",
-                style: GoogleFonts.aBeeZee().copyWith(
-                    fontSize: 28.0,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.white),
-              ),
-            ),
+            delegate: APersistentHeader(),
           ),
           SliverToBoxAdapter(
             child: Row(
@@ -233,67 +218,83 @@ class _AboutScreenState extends State<AboutScreen> {
                           child: Padding(
                             padding: const EdgeInsets.only(
                                 left: 7.5, top: 10.0, right: 15.0, bottom: 0.0),
-                            child: Container(
-                              height: 250.0,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16.0),
-                                color: Colors.blueAccent,
-                              ),
-                              child: FractionallySizedBox(
-                                widthFactor: 1,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Storage",
-                                        style: GoogleFonts.aBeeZee().copyWith(
-                                            fontSize: 18.0,
-                                            color: Colors.white),
+                            child: Stack(
+                              children: [
+                                RotatedBox(
+                                  quarterTurns: 2,
+                                  child: ClipPath(
+                                    clipper: WaveClipper(),
+                                    clipBehavior: Clip.antiAlias,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(16.0),
+                                        color: Colors.blueAccent,
                                       ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16.0),
+                                    color: Colors.white12,
+                                  ),
+                                  child: FractionallySizedBox(
+                                    widthFactor: 1,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: Column(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            "Occupied",
-                                            style: GoogleFonts.aBeeZee()
-                                                .copyWith(
+                                            "Storage",
+                                            style: GoogleFonts.aBeeZee().copyWith(
+                                                fontSize: 18.0,
+                                                color: Colors.white),
+                                          ),
+                                          Column(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "Occupied",
+                                                style: GoogleFonts.aBeeZee()
+                                                    .copyWith(
                                                     fontSize: 14.0,
                                                     color: Colors.white54),
-                                          ),
-                                          RichText(
-                                            text: TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: "44.2 GB",
-                                                  style: GoogleFonts.aBeeZee()
-                                                      .copyWith(
+                                              ),
+                                              RichText(
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: "44.2 GB",
+                                                      style: GoogleFonts.aBeeZee()
+                                                          .copyWith(
                                                           fontSize: 18.0,
                                                           color: Colors.white),
-                                                ),
-                                                TextSpan(
-                                                  text: "/64 GB",
-                                                  style: GoogleFonts.aBeeZee()
-                                                      .copyWith(
+                                                    ),
+                                                    TextSpan(
+                                                      text: "/64 GB",
+                                                      style: GoogleFonts.aBeeZee()
+                                                          .copyWith(
                                                           fontSize: 16.0,
                                                           color: Colors.white),
+                                                    ),
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
                                         ],
                                       ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
                           ),
                         ),
@@ -461,6 +462,12 @@ class _AboutScreenState extends State<AboutScreen> {
               ),
             ),
           ),
+
+          const SliverToBoxAdapter(
+            child: SizedBox(
+              height: 150.0,
+            ),
+          )
 
         ],
       ),
