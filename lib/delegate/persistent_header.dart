@@ -22,12 +22,15 @@ class APersistentHeader extends SliverPersistentHeaderDelegate {
                 )),
           ),
           Align(
-            alignment: Alignment.bottomLeft,
+            alignment: Alignment.lerp(
+                Alignment.bottomLeft,
+                Alignment.bottomCenter,
+                progress) ?? Alignment.bottomLeft,
             child: Padding(
               padding: EdgeInsets.lerp(
                   const EdgeInsets.symmetric(vertical: 16.0, horizontal: 30.0),
-                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 60.0),
-                  progress) ?? const EdgeInsets.symmetric(vertical: 16.0, horizontal: 60.0),
+                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 0.0),
+                  progress) ?? const EdgeInsets.symmetric(vertical: 16.0, horizontal: 0.0),
               child: Text(
                 "About phone",
                 style: TextStyle.lerp(
